@@ -26,18 +26,79 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.questions = @[@"question 1",
-                       @"question 2",
-                       @"question 3"];
 
-    [self.tableView reloadData];
-
+    [self fetchNewQuestions];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)fetchNewQuestions
+{
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSURL *url = [NSURL URLWithString:@"http://chiebukuro.yahooapis.jp/Chiebukuro/V1/getNewQuestionList?appid=&condition=open&results=20&output=json"];
+    
+    /*
+    NSURLSessionDataTask *task =
+    [session dataTaskWithURL:url
+           completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                   if (error)
+                   {
+                       return;
+                   }
+                   
+                   NSError *jsonError = nil;
+                   NSDictionary *jsonDictionary =
+                   [NSJSONSerialization JSONObjectWithData:data
+                                                   options:0
+                                                   error:&jsonError];
+                   
+                   if (jsonError != nil) return;
+                   
+                   self.questions = jsonDictionary[@"ResultSet"][@"Result"];
+                   
+//                   [self performSelectorOnMainThread:@selector(reloadTableView)
+//                                          withObject:nil
+//                                          waitUntilDone:YES];
+               
+               [self performSelectorOnMainThread:@selector(reloadTableView) withObject:nil waitUntilDone:YES];
+               }];
+    */
+    NSURLSessionDataTask *task =
+    [session dataTaskWithURL:url
+           completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
+     {
+         if (error)
+         {
+             // 通信が異常終了したときの処理
+             return;
+         }
+         
+         // 通信が正に常終了したときの処理
+         NSError *jsonError = nil;
+         NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+         
+         // JSONエラーチェック
+         if (jsonError != nil) return;
+         
+         // 検索結果をディクショナリにセット
+         self.questions = jsonDictionary[@"ResultSet"][@"Result"];
+         
+         // TableView をリロード
+         // メインスレッドでやらないと最悪クラッシュする
+         [self performSelectorOnMainThread:@selector(reloadTableView) withObject:nil waitUntilDone:YES];
+     }];
+    
+    [task resume];
+}
+
+// テーブルビューを再描画する
+- (void)reloadTableView
+{
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,7 +133,12 @@
     }
     
     // Configure the cell...
-    cell.textLabel.text = self.questions[indexPath.row];
+//    cell.textLabel.text = self.questions[indexPath.row];
+    
+    NSDictionary *question = self.questions[indexPath.row];
+    
+    cell.textLabel.text = question[@"Content"];
+    cell.detailTextLabel.text = question[@"Category"];
     
     return cell;
 }
