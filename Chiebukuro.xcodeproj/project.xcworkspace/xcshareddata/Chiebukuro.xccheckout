@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>375FF9FB-FEE3-46EA-9FB6-CC35A66F2BD0</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Chiebukuro</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C3F6799B-DDC6-4B43-9834-ADD37CA16DCA</key>
+		<string>https://github.com/idekeita/Chiebukuro.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Chiebukuro.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C3F6799B-DDC6-4B43-9834-ADD37CA16DCA</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/idekeita/Chiebukuro.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C3F6799B-DDC6-4B43-9834-ADD37CA16DCA</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C3F6799B-DDC6-4B43-9834-ADD37CA16DCA</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Chiebukuro</string>
+		</dict>
+	</array>
+</dict>
+</plist>
