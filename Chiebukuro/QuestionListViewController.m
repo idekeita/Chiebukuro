@@ -1,5 +1,5 @@
 //
-//  QuestionListViewControllerTableViewController.m
+//  QuestionListViewController.m
 //  Chiebukuro
 //
 //  Created by IDE KEITA on 2014/09/07.
@@ -65,9 +65,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellId = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellId
-                                                            forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
     
     // Configure the cell...
     cell.textLabel.text = self.questions[indexPath.row];
